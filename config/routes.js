@@ -50,7 +50,7 @@ router.delete('/stocks/:id',authenticateUser,stocksController.destroy)
 router.get('/employees',authenticateUser,employeesController.list)
 router.get('/employees/:id',authenticateUser,employeesController.show)
 router.post('/employees',  authenticateUser, uploadEmp,employeesController.create)
-router.put('/employees/:id',authenticateUser,employeesController.update)
+//router.put('/employees/:id',authenticateUser,employeesController.update)
 router.delete('/employees/:id',authenticateUser,employeesController.destroy)
 
 router.get('/sales',authenticateUser,salesController.list)
