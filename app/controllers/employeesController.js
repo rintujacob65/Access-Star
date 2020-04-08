@@ -39,6 +39,10 @@ module.exports.create = (req,res) => {
         emiratesIdImage :  req.files.emiratesIdImage[0].path,
         visaImage :  req.files.visaImage[0].path,
         profilePic : req.files.profilePic[0].path
+<<<<<<< HEAD
+=======
+       
+>>>>>>> 84601996cac3046255e025a44e237ed572808a14
     })
     //console.log("employee",employee)
     employee.save()
