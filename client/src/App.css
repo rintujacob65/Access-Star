@@ -1,0 +1,75 @@
+/* Home page */
+
+.Home {
+    position: absolute;
+    width: 100%;
+    height: 100%; 
+    left: 0px;
+    top: 0px;
+    background: #2C2734;
+}
+.Image-background {
+    position: absolute;
+    width: 369px;
+    height: 96%;
+    left: 20px;
+    top: 13px;
+    /*background: rgba(239, 102, 122, 0.2);
+     border: 1px solid #fff; */
+    background: url(image.png);
+    background-size: cover;
+  }
+  /* .Image {
+    width: 325px;
+    height: 476px;
+    left: 14px;
+    top: 12px;
+    background: url(image.png);
+  } */
+  .Sidebar{
+    position: absolute;
+    width: 100px;
+    height: 96%;
+    left: 345px;
+    top: 13px;
+    background: #EF667A;
+  }
+  /* .Transparent-image
+   {
+    position: absolute;
+    width: 269px;
+    height: 475px;
+    left: 70px;
+    top: 13px;
+    background: rgba(239, 102, 122, 0.2);
+} */
+.Access-star {
+    position: absolute;
+    width: 257px;
+    height: 59px;
+    left: 820px;
+    top: 130px;
+    background: #242424;
+    border-radius: 20px;
+}
+.h2-font{
+    position: absolute;
+    width: 170px;
+    height: 41px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 10px;
+    color: #FFFFFF;
+    padding-left: 50px;
+}
+.login{
+    position: absolute;
+    width: 228px;
+    height: 41px;
+    left: 598px;
+    top: 225px;
+    background: #242424;
+    border-radius: 15.5556px;
+}

@@ -36,11 +36,11 @@ module.exports.create = (req,res) => {
         address : req.body.address,
         mobileNo : req.body.mobileNo,
         passportNo : req.body.passportNo,
-        emiratesIdImage :  req.files.emiratesIdImage,
-         visaImage :  req.files.visaImage,
-         profilePic : req.files.profilePic
+        emiratesIdImage :  req.files.emiratesIdImage[0].path,
+        visaImage :  req.files.visaImage[0].path,
+        profilePic : req.files.profilePic[0].path
     })
-    console.log("employee",employee)
+    //console.log("employee",employee)
     employee.save()
     .then((employee) => {
         res.json(employee)
@@ -52,10 +52,10 @@ module.exports.create = (req,res) => {
 module.exports.update = (req,res) => {
     const body = req.body;
     const id = req.params.id;
-    Employee.findOneAndUpdate({ user : req.user._id, id : _id }, body, 
-        { new : true , runValidators : true
-    })
-    .then((employee) => {
+    Employee.findOneAndUpdate({ user : req.user._id, _id : id }, body, 
+        { new : true , runValidators : true})
+   
+        .then((employee) => {
         res.json(employee)
     })
     .catch((err) => {

@@ -1,31 +1,16 @@
 import React from 'react'
-
-//material ui
-import Container from '@material-ui/core/Container'
-
+import { BrowserRouter, Route} from 'react-router-dom'
+import Home from './components/Home'
+import Login from './components/x-auth/login/Login'
 
 function App(props){
     return(
-      <Container style=
-                {{position: 'absolute',
-                    width: '1349px',
-                    height: '500px',
-                    left: '0px',
-                    top: '0px',
-                    //background: '#2C2734'
-                    }}>
-                {/* <div style ={{
-                    position: 'absolute',
-                    width: '325px',
-                    height: '476px',
-                    left: '14px',
-                    top: '12px',
-                    backgroundImage : URL('')
-                }}></div> */}
-                <h1>Access Star</h1>
-                {/* <Link to="/notes">Notes</Link>
-                <Link to="/categories">Categories</Link> */}
-            </Container>
-     )
+        <div>
+            <BrowserRouter>
+                {/* <Route path="/" component={Home} exact={true} /> */}
+                <Route path="/" component={Login} exact={true} />
+            </BrowserRouter>
+        </div>
+     )  
 }
 export default App
