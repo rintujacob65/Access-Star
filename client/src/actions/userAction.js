@@ -22,7 +22,7 @@ export const setUser = (user) => {
 }
 
 export const startSetUser = () => {
-    return(dispatch) => {
+    return(dispatch) => { 
         axios.get('/account',{
             headers : {
                 'x-auth' : localStorage.getItem('authToken')
@@ -36,7 +36,7 @@ export const startSetUser = () => {
     }   
 }
 
-export const startSignin = (formData,redirect) => {
+export const startLogin = (formData,redirect) => {
     return (dispatch) => {
         axios.post('/login',formData)
         .then(response => {

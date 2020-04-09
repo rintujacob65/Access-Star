@@ -74,10 +74,9 @@ userSchema.methods.generateToken = function(){
 
 //pre hooks
 
-userSchema.pre('save', function(next){
+userSchema.pre('save', function(next){ 
     const user = this
-    
-    if(user.isNew){
+   if(user.isNew){
         bcryptjs.genSalt(10)
         .then((salt) => { 
             bcryptjs.hash(user.password, salt)

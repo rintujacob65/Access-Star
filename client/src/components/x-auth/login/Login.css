@@ -4,6 +4,7 @@
     height: 363px;
     margin-top :93px !important;
     margin: 0 auto;
+    background-color: #fff;
 }
 .Login-outer{
     width: 275px;
@@ -12,6 +13,7 @@
     margin: 0 auto;
     margin-right: 5px !important;
     box-shadow: none !important;
+    border: 1px solid rgb(150, 80, 80);
 }
 .Login-button {
     background: #EF667A !important;

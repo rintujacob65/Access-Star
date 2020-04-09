@@ -1,18 +1,14 @@
-import React, { Component } from 'react'
-import '../../../App.css'
-import '../login/Login.css'
+import React from 'react'
 import { connect } from 'react-redux'
-import {withRouter} from 'react-router-dom'
-import { MuiThemeProvider } from '@material-ui/core/styles'
-import { Grid, TextField, Card, CardContent,Button } from '@material-ui/core/'
+import { startLogin } from '../../../actions/userAction'
+import {Link} from 'react-router-dom'
 
-export class Login extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-             email : '',
-             password : ''
+class Login extends React.Component{
+    constructor(){
+        super()
+        this.state ={
+            email:'',
+            password :''
         }
     }
     handleChange = (e) => {
@@ -22,65 +18,50 @@ export class Login extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault()
-        const formData = {
+        const formData={
             email : this.state.email,
             password : this.state.password
         }
         console.log("formdata",formData)
+        const redirect = () => this.props.history.push('/')
+       this.props.dispatch(startLogin(formData,redirect))
     }
-    
-    render() {
-        const { email , password} = this.state
-        return (
-            <MuiThemeProvider>
-                <React.Fragment>
-                    <Grid item xs={12} className="Home">
-                        <Card className="Home-login" >
-                            <CardContent>
-                                <h2 className="Login-h2">LOGIN</h2>
-                                <Card className="Login-outer">
-                                    <CardContent>
-                                        <TextField 
-                                        label = "Email"
-                                        onChange={this.handleChange}
-                                        name = "email"
-                                        />
-                                    <br/>
-                                    <TextField 
-                                        type = "password"
-                                        label = "Password"
-                                        onChange={this.handleChange}
-                                        name = "password"
-                                        />
-                                    <br/>
-                                    <Button 
-                                        variant="contained" 
-                                        color="primary"
-                                        className = "Login-button " >
-                                            Login
-                                    </Button>
+    render(){
+        return(
+            <div className="col-md-6 offset-md-3">
+                <h2>LOGIN</h2>
+                <form onSubmit={this.handleSubmit}>
+                     <div className="form-group">
+                        {/* <label htmlFor="email">Email</label> */}
+                        <input type="text" id="email"
+                            value={this.state.email}
+                            name="email"
+                            onChange={this.handleChange}
+                            className="form-control"
+                            placeholder="email"/>
+                     </div>
+                     <div className="form-group">
+                        <input type="password" id="password"
+                            value={this.state.password}
+                            name = "password"
+                            onChange={this.handleChange}
+                            className="form-control"
+                            placeholder="password"/>
+                     </div>
+                     
+                     <input type="submit" 
+                            className="btn btn-primary btn-block"
+                            value="Login"/>
+                      <Link to = "/register" >
+                                Don't have an account? 
+                                <label style={{color:"#EF667A"}}>
+                                    Register
+                                </label>
+                        </Link>
+                </form>
 
-                                    </CardContent>
-                                </Card>
-                                <Grid container>
-                                <Grid item xs>
-                                </Grid>
-                                <Grid item className="Register-label">
-                                    {/* <Link to = "/signup" > */}
-                                    Don't have an account? 
-                                    <label style={{color:"#EF667A"}}>Register</label>
-                                    {/* </Link> */}
-                                </Grid>
-                            </Grid>
-                               
-                            </CardContent>
-                        </Card>
-                     </Grid>
-                </React.Fragment>
-            </MuiThemeProvider>
+                </div>
         )
     }
 }
-
-
-export default withRouter(connect()(Login))
+export default connect()(Login)

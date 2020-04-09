@@ -4,7 +4,7 @@ const cors = require('cors')
 const setupDB = require('./config/database')
 const router = require('./config/routes')
 const app = express()
-const port = 3045
+const port = 3047
 
 app.use(express.json())
 // for get files

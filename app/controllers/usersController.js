@@ -8,9 +8,10 @@ const _ = require('lodash')
 module.exports.register = (req,res) => {
     const body = req.body
     const user = new User(body)
-     user.save()
+    user.save()
     .then((user) => {
-        res.json(_.pick(user, ['_id','username','role', 'email']))
+       // res.json(_.pick(user, ['_id','username','role', 'email']))
+       res.json(user)
     })
     .catch((err) => {
         res.json(err)
@@ -43,9 +44,10 @@ module.exports.login = (req,res) => {
     
 }
 //localhost:3000/users/account
-module.exports.account = (req,res) => {
+module.exports.account = (req,res) => { 
     const {user} = req
-    res.json(_.pick(user,['_id','username','email']))
+   // res.json(_.pick(user,['_id','username','email']))
+   res.json(user)
 }
 //localhost:3000/users/logout
 

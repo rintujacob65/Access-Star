@@ -4,8 +4,7 @@ import App from './App'
 import configureStore from './store/configureStore'
 import { Provider } from 'react-redux'
 import { startSetUser} from './actions/userAction'
-
-
+import 'bootstrap/dist/css/bootstrap.css'
 
 const store = configureStore()
 console.log(store.getState())
@@ -18,7 +17,7 @@ store.subscribe(() => {
 
 if(localStorage.getItem('authToken'))
 {
-   //store.dispatch(startSetUser())
+   store.dispatch(startSetUser())
   
 }
 
