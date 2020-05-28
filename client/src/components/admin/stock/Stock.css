@@ -1,0 +1,16 @@
+.table_list {
+    position: absolute;
+    width: 750px  !important;
+    height: 187px;
+    left: 199px;
+    top: 92px;
+    background: #FFFFFF;
+    overflow-x:  visible;
+    border-radius: 30px !important;
+    /* border: 2px solid rgb(168, 19, 19); */
+}
+.table_outer{
+    width: 100%;
+    height: 622px;
+    background: #E5E5E5;
+}

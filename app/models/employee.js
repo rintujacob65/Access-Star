@@ -32,14 +32,23 @@ const employeeSchema = new Schema ({
     }],
     //idRenewalReminder :{},
     //passportRenewalRemainder : {},
-    visaImage : [{
+    visaImage : {
         type : Object,
          required : true
-    }],
-    profilePic : [{
+    },
+    profilePic : {
         type : Object,
         required : true
-    }]
+    },
+    passportImage : [{
+        type : Object,
+        required : true
+    }],
+    user : {
+        type : Schema.Types.ObjectId,
+        required : true,
+        ref : 'User'
+    }
 
 })
 

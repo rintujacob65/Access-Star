@@ -7,7 +7,7 @@ const {authenticateUser} = require('../app/middlewares/authentication')
 const employeesController = require('../app/controllers/employeesController')
 
 const multer = require('multer')
-const storage = multer.diskStorage({
+var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './uploads/')
     },
@@ -15,26 +15,31 @@ const storage = multer.diskStorage({
      // cb(null, file.fieldname + '-' + Date.now() + '.jpg')
      cb(null, Date.now() + file.originalname)
     }
-  })
-const fileFilter = (req,file,cb) => {
+  });
+const fileFilter = (req, file, cb) => {
   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
     cb(null, true);
   } else {
     cb(null, false);
   }
-}
+};
 var upload = multer({
   storage: storage,
   limits: { fileSize: 1024 * 1024 * 5 },
   fileFilter: fileFilter
-})
+});
+
 var uploadEmp = upload.fields([
   { name: 'emiratesIdImage' },
   { name: 'visaImage'},
-  { name: 'profilePic'}
+  { name: 'profilePic'},
+  { name: 'passportImage'}
 ])
 
-  //const upload = multer({ storage: storage }).single('image')
+  // const upload = multer({ storage: storage,
+  //   limits: { fileSize: 1024 * 1024 * 5 },
+  //   fileFilter: fileFilter
+  //  });
 
 router.post('/register', usersController.register)
 router.post('/login', usersController.login)
@@ -43,8 +48,12 @@ router.delete('/logout', authenticateUser,usersController.logout)
 
 router.get('/stocks',authenticateUser,stocksController.list)
 router.get('/stocks/:id',authenticateUser,stocksController.show)
-router.post('/stocks',authenticateUser, upload.single('image') ,stocksController.create)
+router.post('/stocks',authenticateUser, upload.single("image") ,stocksController.create)
 router.put('/stocks/:id',authenticateUser,stocksController.update)
+router.put('/stocks/image/:id',
+            authenticateUser,
+            upload.single('image'),
+            stocksController.updateImage)
 router.delete('/stocks/:id',authenticateUser,stocksController.destroy)
 
 router.get('/employees',authenticateUser,employeesController.list)

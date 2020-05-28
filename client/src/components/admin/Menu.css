@@ -1,0 +1,41 @@
+.access_star_menu{
+    position: absolute;
+    width: 228px;
+    height: 56px;
+    left: 0px;
+    top: 0px;
+    background: #EF667A;
+}
+.access_star_menu:hover{
+    background : none !important
+}
+.access_star_menu span {
+    position: absolute;
+    width: 170px;
+    height: 31px;
+    left: 6px;
+    top: 16px;
+    font-family: Open Sans !important;
+    font-style: normal !important;
+    font-weight: bold !important ;
+    font-size: 27px !important;
+    line-height: 31px;
+    color: #FFFFFF;
+}
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+a:hover{
+    width: 225px;
+    height: 51px;
+    background: rgba(255, 255, 255, 0.38);
+    color: #fff !important;
+}
+.menu_outer {
+    background: #2C2734
+}
+.row_details{
+    margin:0 !important;
+    height:720px
+}

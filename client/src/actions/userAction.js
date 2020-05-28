@@ -1,5 +1,6 @@
 import axios from '../config/axios'
 import swal from 'sweetalert'
+import Swal from 'sweetalert2'
 
 export const startRegister = (formData,redirect) => {
     return(dispatch) => {
@@ -41,11 +42,19 @@ export const startLogin = (formData,redirect) => {
         axios.post('/login',formData)
         .then(response => {
             if(response.data.hasOwnProperty('error')){
-                swal(`${response.data.error}`,"","error")
+                const displayMessages = []
+                for(const key in response.data.errors){
+                    displayMessages.push(response.data.errors[key].message)
+                }
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text:   `${displayMessages.join(', ')}`,
+                    confirmButtonText: 'Ok'
+                  })
             } else {
                 console.log("account",response.data.token)
-                if( response.data.token) {
-                    localStorage.setItem('authToken',response.data.token)
+                localStorage.setItem('authToken',response.data.token)
                 //redirect()
                 axios.get('/account',{
                     headers : {
@@ -54,14 +63,17 @@ export const startLogin = (formData,redirect) => {
                 })
                 .then((response) => {
                     const user = response.data
-                    console.log("login",user)
+                    console.log("user login",user)
                     dispatch(setUser(user))
-                    redirect()
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text:   'You have successfully logged in',
+                            confirmButtonText: 'Ok'
+                        })
+                        redirect()
+                    
                 })
-                } else {
-                    swal('invalid email/password ',"","error")
-                }
-                
             }
         })
     }

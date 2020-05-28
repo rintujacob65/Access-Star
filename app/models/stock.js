@@ -7,14 +7,19 @@ const stockSchema = new Schema ( {
         type : String,
         required : true
     },
-    image : [{
-        type : String,
-        required : true
-    }],
-    rating : {
-        type : String,
-        required : true
+    // image : [{
+    //     type : String,
+    //     //required : true
+    // }],
+    image : {
+        type : String
     },
+    // rating : {
+    //     type : Number,
+    //     required: [true, 'A rating is required.'],
+    //     min: [1, 'A minimum rating of "1" is required.'],
+    //     max: [5, '"5" is the maximum rating.']
+    // },
     quantity : {
         type : Number,
         required : true,

@@ -1,7 +1,8 @@
 const Employee = require('../models/employee')
+let img = "http://localhost:3047"
 
 module.exports.list = (req,res) => {
-        Employee.find({user : req.user._id})
+        Employee.find({user : req.user._id}).populate('user')
         .then((employees) => {
             res.json(employees)
         })
@@ -28,7 +29,8 @@ module.exports.create = (req,res) => {
     console.log("emiratesIdImage",req.files.emiratesIdImage)
     console.log("visaImage",req.files.visaImage)
     console.log("profilePic",req.files.profilePic)
-    
+    console.log("passportImage",req.files.passportImage)
+
     const employee = new Employee({
         _id : req.body._id,
         name : req.body.name,
@@ -36,11 +38,13 @@ module.exports.create = (req,res) => {
         address : req.body.address,
         mobileNo : req.body.mobileNo,
         passportNo : req.body.passportNo,
-        emiratesIdImage :  req.files.emiratesIdImage[0].path,
-        visaImage :  req.files.visaImage[0].path,
-        profilePic : req.files.profilePic[0].path
+        emiratesIdImage : img +"/uploads/"+ req.files.emiratesIdImage[0].filename,
+        visaImage :  img +"/uploads/"+req.files.visaImage[0].filename,
+        profilePic :img +"/uploads/"+ req.files.profilePic[0].filename,
+        passportImage : img + "/uploads/"+ req.files.passportImage[0].filename,
+        user : req.body.user
     })
-    //console.log("employee",employee)
+    console.log("employee new",employee)
     employee.save()
     .then((employee) => {
         res.json(employee)

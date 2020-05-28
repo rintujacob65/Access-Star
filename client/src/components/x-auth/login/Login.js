@@ -23,7 +23,7 @@ class Login extends React.Component{
             password : this.state.password
         }
         console.log("formdata",formData)
-        const redirect = () => this.props.history.push('/')
+        const redirect = () => this.props.history.push('/stocks')
        this.props.dispatch(startLogin(formData,redirect))
     }
     render(){

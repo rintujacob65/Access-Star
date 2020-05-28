@@ -1,4 +1,5 @@
 const Stock = require('../models/stock')
+let img = "http://localhost:3047";
 
 
 module.exports.list = (req,res) => {
@@ -26,17 +27,20 @@ module.exports.show = (req,res) => {
 }
 module.exports.create = (req,res) => {
     console.log("file",req.file)
-   // const body = req.body
+     const body = req.body
+     console.log("body",body)
     //const stock = new Stock(body)
     const stock = new Stock({
         _id : req.body._id,
         brand : req.body.brand,
-        image : req.file.path,
+        image : img + "/uploads/" + req.file.filename,
+      // image : img +"/uploads/"+ req.body.image,
         rating : req.body.rating,
         quantity : req.body.quantity,
-        user : req.body.user
+        user : req.user._id
 
     })
+    console.log("stock" ,stock)
     stock.save()
     .then((stock) => {
         res.json(
@@ -47,7 +51,21 @@ module.exports.create = (req,res) => {
         res.json(err)
     })
     }
-
+module.exports.updateImage = (req,res) => {
+    const id = req.params.id
+    console.log("id",id)
+    Stock.findByIdAndUpdate(
+        id ,
+        { image : img +"/uploads/"+ req.file.filename },
+        { new : true, runValidators : true}
+    )
+    .then((stock) => {
+        res.json(stock)
+    })
+    .catch((err) =>{
+        res.json(err)
+    })
+}
 module.exports.update = (req,res) => {
     const id = req.params.id
     const body = req.body

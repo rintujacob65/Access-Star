@@ -18,7 +18,7 @@ module.exports.register = (req,res) => {
     })
 }
 
-//localhost:3000/users/login
+//localhost:3000/login
 
 module.exports.login = (req,res) => {
     const body = req.body
@@ -43,13 +43,14 @@ module.exports.login = (req,res) => {
         })
     
 }
-//localhost:3000/users/account
+//localhost:3000/account
 module.exports.account = (req,res) => { 
     const {user} = req
-   // res.json(_.pick(user,['_id','username','email']))
-   res.json(user)
+    res.json(_.pick(user,['_id','username','email']))
+   console.log("rintu",_.pick(user,['_id','username','email']))
+  // res.json(user)
 }
-//localhost:3000/users/logout
+//localhost:3000/logout
 
 module.exports.logout = (req,res) => {
     const { user,token} = req
